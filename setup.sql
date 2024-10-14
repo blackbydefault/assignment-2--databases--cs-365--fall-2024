@@ -1,6 +1,10 @@
 DROP DATABASE IF EXISTS website_accounts; 
 CREATE DATABASE website_accounts DEFAULT CHARACTER SET utf8mb4;
-use website_accounts;
+USE website_accounts;
+
+SET block_encryption_mode = 'aes-256-cbc';
+SET @key_str = UNHEX(SHA2('my secret passphrase', 512));
+SET @init_vector = RANDOM_BYTES(16);
 
 CREATE TABLE account_users
 (
