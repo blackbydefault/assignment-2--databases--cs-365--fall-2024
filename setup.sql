@@ -3,7 +3,7 @@ CREATE DATABASE website_accounts DEFAULT CHARACTER SET utf8mb4;
 USE website_accounts;
 
 SET block_encryption_mode = 'aes-256-cbc';
-SET @key_str = UNHEX(SHA2('my secret passphrase', 512));
+SET @key_str = UNHEX(SHA2('im not done yet here', 512));
 SET @init_vector = RANDOM_BYTES(16);
 
 CREATE TABLE account_users
