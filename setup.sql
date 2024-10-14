@@ -1,4 +1,6 @@
-use website_accounts; 
+DROP DATABASE IF EXISTS website_accounts; 
+CREATE DATABASE website_accounts DEFAULT CHARACTER SET utf8mb4;
+use website_accounts;
 
 CREATE TABLE account_users
 (
@@ -26,10 +28,18 @@ CREATE TABLE pass_users
 
 
 INSERT INTO account_users
-(
-    first_name, last_name, user_name, email, comment
-)
 VALUES
 (
     
-)
+);
+INSERT INTO website_users
+VALUES
+(
+
+);
+
+INSERT INTO pass_users
+VALUES
+(
+
+);
