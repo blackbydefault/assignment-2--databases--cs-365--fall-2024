@@ -7,6 +7,7 @@ SET @key_str = UNHEX(SHA2('my secret passphrase', 256));
 SET @init_vector = RANDOM_BYTES(16);
 
 CREATE TABLE account_users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(25) NOT NULL,
     last_name VARCHAR(25) NOT NULL,
     user_name VARCHAR(25) NOT NULL,
@@ -15,16 +16,18 @@ CREATE TABLE account_users (
 );
 
 CREATE TABLE website_users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     website_name VARCHAR(40) NOT NULL,
     website_url VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE pass_users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     pass_wrd VARBINARY(255),
     pass_create TIMESTAMP NOT NULL
 );
 
-INSERT INTO account_users VALUES
+INSERT INTO account_users (first_name, last_name, user_name, email, comment) VALUES
 ('John', 'Doe', 'johndoe123', 'john@example.com', 'Shopping website'),
 ('Jane', 'Smith', 'janesmith456', 'jane@example.com', 'Bookstore website'),
 ('Alice', 'Johnson', 'alicejohnson', 'alice@example.com', 'Travel booking site'),
@@ -36,7 +39,7 @@ INSERT INTO account_users VALUES
 ('Henry', 'Walker', 'henrywalker', 'henry@example.com', 'Fashion website'),
 ('Ivy', 'Young', 'ivyyoung', 'ivy@example.com', 'Tech news site');
 
-INSERT INTO website_users VALUES
+INSERT INTO website_users (website_name, website_url) VALUES
 ('SuperMart', 'www.supermart.com'),
 ('Book Paradise', 'www.bookparadise.com'),
 ('TravelGo', 'www.travelgo.com'),
@@ -48,7 +51,7 @@ INSERT INTO website_users VALUES
 ('FashionForward', 'www.fashionforward.com'),
 ('TechTrends', 'www.techtrends.com');
 
-INSERT INTO pass_users VALUES
+INSERT INTO pass_users (pass_wrd, pass_create) VALUES
 (AES_ENCRYPT('Sup3r!Mart', @key_str, @init_vector), '2024-10-04 17:23'),
 (AES_ENCRYPT('Read@Par4dise', @key_str, @init_vector), '2024-10-05 17:23'),
 (AES_ENCRYPT('Travel!2024', @key_str, @init_vector), '2024-10-06 17:23'),
@@ -61,12 +64,12 @@ INSERT INTO pass_users VALUES
 (AES_ENCRYPT('T3ch!Tr3nds', @key_str, @init_vector), '2024-10-01 17:23');
 
 
+/*
 -- TESTING SQL COMMANDS 
 USE passwords; 
 SHOW TABLES; 
 SELECT pass_wrd FROM pass_users; 
-
-
+*/
 
 
 
